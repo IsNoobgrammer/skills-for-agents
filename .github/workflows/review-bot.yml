@@ -1,0 +1,72 @@
+name: SIP Reviewer Bot
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**/SKILL.md'
+      - 'scripts/sip-validator.js'
+
+permissions:
+  pull-requests: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run SIP Validator
+        id: validator
+        run: |
+          # Only validate directories that have changed
+          CHANGED_DIRS=$(git diff --name-only origin/${{ github.base_ref }} HEAD | grep "SKILL.md" | xargs -I {} dirname {} | sort -u)
+          
+          if [ -z "$CHANGED_DIRS" ]; then
+            echo "No skill changes detected."
+            echo "REPORT=No skills changed." >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          REPORT=""
+          for dir in $CHANGED_DIRS; do
+            echo "Validating $dir..."
+            OUT=$(node scripts/sip-validator.js "$dir") || true
+            REPORT="$REPORT\n$OUT"
+            
+            # Run AI Reviewer
+            echo "Running AI Reviewer on $dir..."
+            AI_OUT=$(node scripts/ai-reviewer.js "$dir") || true
+            if [ -n "$AI_OUT" ]; then
+              REPORT="$REPORT\n\n$AI_OUT"
+            fi
+          done
+          
+          # Clean up for GH output (escape newlines)
+          echo "REPORT<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$REPORT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const report = process.env.REPORT;
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "## SIP Validation Results\n" + report
+            })
+        env:
+          REPORT: ${{ steps.validator.outputs.REPORT }}
+
