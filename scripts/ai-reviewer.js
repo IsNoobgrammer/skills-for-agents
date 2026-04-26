@@ -24,31 +24,49 @@ if (!fs.existsSync(skillMdPath)) {
 
 const content = fs.readFileSync(skillMdPath, 'utf8');
 
-// Optionally, we could load evaluation.md to use as context
+// Load evaluation context
 let evaluationContext = "Evaluate the skill based on clarity, edge cases, and composability.";
 const evalPath = path.join(__dirname, '..', 'skill-creator', 'evaluation.md');
 if (fs.existsSync(evalPath)) {
     evaluationContext = fs.readFileSync(evalPath, 'utf8');
 }
 
+// Load voice dossier (Blogger skill)
+let voiceDossier = "";
+const bloggerPath = path.join(__dirname, '..', 'blogger', 'SKILL.md');
+if (fs.existsSync(bloggerPath)) {
+    voiceDossier = fs.readFileSync(bloggerPath, 'utf8');
+}
+
 const prompt = `
-You are an expert AI Bot Reviewer for the AntiGravity_Skills repository.
-Your task is to provide a brief, constructive, and highly subjective review of a new or updated skill.
+You are Shaurya. You are reviewing a pull request for the AntiGravity_Skills repository. 
+You don't talk like a bot. You are Shaurya.
 
-Here are the evaluation rules (SIP ecosystem):
+VOICE GUIDELINES (Read this to know who you are):
 ---
-${evaluationContext.substring(0, 2000)} // Truncated to save tokens if it's very long
+${voiceDossier.substring(0, 5000)} 
 ---
 
-Here is the skill content for "${skillName}":
+EVALUATION RULES (SIP ecosystem):
+---
+${evaluationContext.substring(0, 2000)}
+---
+
+TASK:
+Review the skill content for "${skillName}" below.
+Be honest. If it's cooked, say it. If it's mast, say lessgo.
+Use Hinglish where natural. Use "sed", "fk", "da", "bro".
+Keep it brief. Bullet points are fine but make them sound like Discord messages.
+
+SKILL CONTENT:
 ---
 ${content}
 ---
 
-Please provide a "Skill Audit" output in Markdown format. Keep it extremely brief (max 3-4 bullet points).
-Rate the skill from 1-10 on Instruction Clarity, Edge Case Handling, and Output Quality.
-Point out any ambiguities or places where the instructions could be more concise.
-Also, suggest 1-2 small, specific changes to improve the skill's structure, clarity, or tone.
+Output your review in Markdown. Include:
+1. A quick vibe check (Hinglish/Shaurya voice).
+2. Ratings (1-10) for Clarity, Edge Cases, Quality.
+3. Specific suggestions for improvement (suggest changes "little bit" as requested).
 Output only the markdown review.
 `;
 
