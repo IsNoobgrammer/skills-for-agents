@@ -12,6 +12,8 @@ If I want to stop wasting compute on filler words, I use `caveman`. Drops articl
 
 If I want it to write like me, I use `blogger`. No polish. No fake excitement. Just the raw 2am debugging energy. Because the journey matters, and the journey usually involves staring at a NaN for two hours before realizing what broke. sed.
 
+If I need to fix the UI, I invoke `painter`. This one is dense. It’s not just a "make it pretty" prompt. It’s a full UI/UX and motion engine distilled from the best design systems. It’s got a full catalog of commands—`/painter analyze` for heuristic audits, `/painter polish` for that final 1% of alignment, and the `/painter paint` godmode. The nuclear option. It analyzes, plans, and implements until the design is actually Good. Check [painter/help.md](file:///s:/AntiGravity_Skills/painter/help.md) for the full manual. It's complex because great design is complex.
+
 There's a `compress` skill too. Same philosophy. 2x or 0x.
 
 The models are getting better, but the default prompt engineering is still trying to be polite instead of being useful.
