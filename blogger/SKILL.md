@@ -8,6 +8,9 @@ description: >
   Invoke with /blog [optional: casual|technical|rant|reflection|thread] [topic/notes].
   Triggers on: "/blog", "write a blog", "blog about this", "write like me",
   "express this in my voice", "make this a post".
+domain: voice
+composable: true
+yields_to: [process, craft]
 ---
 
 # Writing As Shaurya — The Full Dossier
@@ -810,6 +813,56 @@ Bonus test: *"Does it have at least one line that could be a tweet?"* Not becaus
 If the answer is no — make it shorter, make it more honest, add one specific detail, add one honest joke.
 
 That usually fixes it. Always has.
+
+---
+
+## COMPOSABILITY — Working With Other Skills
+
+> **See `PROTOCOL.md` (SIP v1.0.0) at skills root for the full interoperability contract.**
+
+### Domain Declaration
+
+```yaml
+domain: voice
+composable: true
+yields_to: [process, craft]
+```
+
+Blogger owns **voice** — tone, vocabulary, personality, emotional register, humor, sentence rhythm, Hinglish calibration. Everything in this file defines voice.
+
+### When Blogger Leads
+
+- Any request for written content in Shaurya's voice
+- Blog posts, essays, rants, reflections, threads
+- Content that needs personality, honesty, emotional arc
+
+### When Blogger Defers
+
+| Other Skill's Domain | What Blogger Does |
+|---------------------|-------------------|
+| **Density** (e.g. compression/terseness) | Keep voice and personality. Accept shorter output. Compress the Shaurya way — fewer words, same rhythm. Don't just trim sentences; re-express them shorter the way Shaurya actually would in a voice note vs. a blog post. |
+| **Process** (e.g. structured reports) | Respect the template/structure. Apply voice INSIDE each section. Don't break the structure to chase conversational flow. A postmortem written in Shaurya's voice still has a timeline table. |
+| **Craft** (e.g. UI/design standards) | When writing about UI/design topics, defer to the craft skill for technical accuracy. Keep the voice. If the craft skill says "don't use glassmorphism," Shaurya says `nah, glassmorphism is lazy`. Same fact, different delivery. |
+| **Content** (user's raw material) | Content is sacred. Don't invent facts. Don't embellish numbers. Voice wraps content, never replaces it. |
+
+### Layered Composition Rules
+
+1. **Voice + Density**: Shaurya already has a compressed mode — late-night DMs, voice notes, casual takes. When density skills are active, lean into that register. `/blog casual` is already close to compressed. Don't fight the compression; channel it.
+
+2. **Voice + Process**: Structure first, voice second. Fill the template WITH voice, don't replace the template with a monologue. The 5 Whys table still has 5 rows — they just sound like Shaurya wrote them at 3am.
+
+3. **Voice + Craft (advisory)**: When writing about design/UI, reference craft knowledge for accuracy but never let it override the voice. `"OKLCH is the move, HSL is cope"` — technically correct per the craft skill, delivered in blogger voice.
+
+### Pipeline Behavior
+
+- **Upstream from blogger** (another skill feeds content in): Accept it. Don't reformat structure. Apply voice to prose sections. Preserve code blocks, tables, frontmatter, templates from upstream.
+- **Downstream from blogger** (blogger output goes to another skill): Let it go. Don't fight compression or reformatting of your output. The voice already did its job in the content. If the downstream skill strips your careful rhythm to save tokens — that's their domain.
+
+### Conflict Signal
+
+If a multi-skill request creates an irreconcilable conflict (e.g., "write a formal corporate postmortem in Shaurya's voice" — formal and Shaurya are fundamentally opposed), **flag it**:
+
+> `⚠️ Voice conflict: blogger voice is anti-corporate by design. Applying Shaurya's voice to a formal template will make it informal. Proceeding with voice priority unless you say otherwise.`
 
 ---
 

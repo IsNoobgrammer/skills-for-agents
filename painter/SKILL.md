@@ -7,6 +7,9 @@ description: >
   Commands: paint (godmode), analyze, polish, shape, craft, audit, animate, colorize, typeset, layout, bolder, quieter, distill, harden, clarify, onboard, adapt, optimize, extract, delight, overdrive.
   Triggers on: "/painter", "make it look pro", "fix the ui", "painter analyze", "painter polish", "painter paint".
 license: MIT
+domain: craft
+composable: true
+yields_to: [voice, process]
 ---
 
 # Painter — Max Pro UI/UX & Animation Philosophy
@@ -312,6 +315,13 @@ Core Web Vitals: LCP < 2.5s, INP < 200ms, CLS < 0.1. Images: WebP/AVIF, lazy loa
 
 ---
 
+## Touch Psychology Reference
+
+> **See `touch-psychology.md` in the painter skill directory for critical mobile touch psychology rules.**
+> Includes Fitts' Law for touch, Thumb Zone Anatomy, Gesture Psychology, Haptic Feedback, and Mobile Cognitive Load.
+
+---
+
 ## `/painter paint` — Godmode
 
 The nuclear option. Full pipeline:
@@ -368,6 +378,76 @@ Godmode does NOT stop at "acceptable". It loops until the design scores Good or 
 - ❌ Placeholder as label.
 - ❌ "OK" / "Submit" / "Yes/No" buttons.
 - ❌ Desktop-first responsive.
+
+---
+
+## Composability — Working With Other Skills
+
+> **See `PROTOCOL.md` (SIP v1.0.0) at skills root for full interop contract.**
+
+### Domain Declaration
+
+```yaml
+domain: craft
+composable: true
+yields_to: [voice, process]
+```
+
+Painter owns **craft** — visual design, UI/UX, motion, color, typography, layout, interaction design, accessibility, and performance of frontend output. Everything in this file defines craft quality.
+
+### When Painter Leads
+
+- Any request to design, build, fix, or audit UI
+- Frontend code generation or modification
+- Design system creation or enforcement
+- Visual critique and scoring
+
+### When Painter Defers
+
+| Other Skill's Domain | What Painter Does |
+|---------------------|-------------------|
+| **Voice** (e.g. personality/tone) | Painter doesn't control how things are SAID — only how things LOOK. If a voice skill is active, painter handles code and visual decisions; the voice skill handles prose, comments, and explanations. UX copy (button labels, error messages, empty states) is shared territory — painter provides the UX writing rules, voice skill provides the tone. |
+| **Density** (e.g. compression) | Painter's design knowledge is high-density already. If a density skill compresses painter's output explanations, fine. But NEVER compress the actual CSS values, design tokens, or technical specs. `cubic-bezier(0.16, 1, 0.3, 1)` is not compressible. |
+| **Process** (e.g. structured workflows) | If painter is called within a process skill's workflow (e.g., a postmortem about a UI bug), painter provides the craft analysis section but doesn't restructure the overall document. Fill your section, don't redesign the report. |
+| **Content** | Painter doesn't invent content. It shapes how content is presented visually. |
+
+### Two Operating Modes in Multi-Skill Context
+
+**1. Active Mode** — Painter is directly invoked or the task is UI work.
+Full painter capabilities apply. Generate code, run audits, score heuristics, apply the full craft toolkit.
+
+**2. Advisory Mode** — Another skill leads, but the topic involves UI/design.
+Painter provides technical accuracy as reference. Don't generate code or run audits unless asked. Supply correct terminology, validate design claims, ensure UI-related statements are accurate.
+
+Example:
+- Blog post about a UI fix → blogger leads (voice), painter advises (ensures the CSS explanation is correct)
+- Postmortem about a rendering bug → postmortem leads (process), painter advises (provides the technical analysis of what went wrong visually)
+
+### Layered Composition Rules
+
+1. **Craft + Voice**: Painter writes code and design decisions. Voice skill wraps the explanations. Code comments stay professional (painter's domain). Prose around code gets voice treatment. This is the cleanest split — code is painter's, words are voice's.
+
+2. **Craft + Density**: All design values survive compression. Compress the teaching, keep the implementation. `"Use expo out easing"` can become `"expo out"` — but `cubic-bezier(0.16, 1, 0.3, 1)` stays verbatim.
+
+3. **Craft + Process**: Painter slots into process frameworks. If a process skill has a section for "technical analysis" or "visual audit," painter fills that section using its scoring/audit tools. The process skill owns the section list and order.
+
+### Pipeline Behavior
+
+- **Upstream** (receives content from another skill): Apply craft polish to whatever arrives. If upstream provides a blog post about UI → don't rewrite it, but if it contains code examples, ensure they meet painter standards.
+- **Downstream** (painter output goes to another skill): Let downstream skills handle voice, density, or process concerns. Painter's code output should be clean enough to survive compression or voice-wrapping without losing technical accuracy.
+
+### Godmode in Multi-Skill Context
+
+`/painter paint` (godmode) can run alongside other skills:
+- If a voice skill is active, godmode's "Present" step uses the voice skill's tone
+- If a density skill is active, godmode's reports are compressed
+- If a process skill called painter, godmode only runs on the relevant section, not the entire document
+
+### Conflict Signal
+
+If craft standards conflict with another skill's output:
+
+> `⚠️ Craft conflict: [design standard X] contradicts [skill Y's output]. Applying craft standard to UI code, deferring to [skill Y] for [prose/structure/density].`
 
 ---
 

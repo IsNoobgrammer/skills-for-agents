@@ -7,6 +7,10 @@ description: >
   Invoke with /compress [path] [optional: lite|standard|aggressive|extreme].
   Triggers on: "/compress", "compress this", "shrink this file", "reduce tokens",
   "make this smaller", "compress docs", "compress directory".
+domain: density
+scope: files
+composable: true
+yields_to: [process, craft]
 ---
 
 # Compress — Text & Document Compression Skill
@@ -386,6 +390,57 @@ For directories:
 - `/compress [path] --output [new_path]` — write to different location
 - `stop compress` / `undo compress` — revert if backup exists
 - If user provides raw text instead of a path, compress inline and return result
+
+---
+
+## Composability — Working With Other Skills
+
+> **See `PROTOCOL.md` (SIP v1.0.0) at skills root for full interop contract.**
+
+### Domain Declaration
+
+```yaml
+domain: density
+scope: files  # NOT live responses — that's a different density skill's job
+composable: true
+yields_to: [process, craft]
+```
+
+Compress owns **file-level density** — reducing token count in text files and directories. It does NOT control live response verbosity (that's another skill's domain).
+
+### When Compress Leads
+
+- Any request to shrink/compress files or directories
+- Preparing files for LLM context windows
+- Batch compression jobs
+
+### When Compress Defers
+
+| Other Skill's Domain | What Compress Does |
+|---------------------|-------------------|
+| **Voice** (e.g. personality/tone) | If a file was written BY a voice skill (e.g., a blog post in someone's voice), compress the structural waste but preserve voice-specific vocabulary, rhythm markers, and cultural references. `"sed"` is not filler — it's payload. |
+| **Process** (e.g. structured reports) | If compressing a process skill's output (e.g., a postmortem report), preserve ALL template structure — section headers, required fields, table layouts. Compress content inside cells and paragraphs. Never merge required sections. |
+| **Craft** (e.g. design specs) | Technical values are NOT compressible. CSS values, color codes, timing functions, spacing tokens — keep exact. Compress the explanatory prose around them. |
+| **Live density** (e.g. response terseness) | If another skill handles live response density, compress only handles files. Don't conflict. Different scopes. |
+
+### Layered Composition Rules
+
+1. **Compress + Voice-authored files**: Reduce structural bloat (articles, filler, redundancy) but recognize that voice files have intentional rhythm. A blog post with short-long-short sentence patterns is using length as a tool — don't flatten it to uniform density at lite/standard. At aggressive/extreme, warn that voice qualities will degrade.
+
+2. **Compress + Process-generated files**: Perfect pipeline candidate. Process skill generates full report → compress shrinks it. Preserve ALL structure (headers, tables, required fields). Compress only the prose inside.
+
+3. **Compress + Craft files**: Design system files (`DESIGN.md`, `PRODUCT.md`) have high information density already. Compression gains will be lower. Don't force aggressive compression on already-dense technical files.
+
+### Pipeline Behavior
+
+- **Upstream** (receives files from another skill): This is the primary pipeline pattern. Another skill generates a file → compress shrinks it. Respect everything the upstream skill produced structurally. Compress the prose, not the skeleton.
+- **Downstream** (compressed files go to another skill): Rare but possible. If a compressed file is then fed to a voice skill for rewriting, the voice skill will expand as needed. That's fine — compress did its job.
+
+### Conflict Signal
+
+If compressing a file would violate another skill's domain integrity:
+
+> `⚠️ Compression conflict: file appears to be [voice-authored / process-structured / craft-specified]. Applying compression to prose only. Structure and domain-specific markers preserved.`
 
 ---
 
