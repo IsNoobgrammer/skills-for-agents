@@ -21,7 +21,7 @@ function validateSkill(skillPath) {
     }
 
     const content = fs.readFileSync(skillMdPath, 'utf8');
-    const fmMatch = content.match(/^---\n([\s\S]+?)\n---\n/);
+    const fmMatch = content.match(/^---\r?\n([\s\S]+?)\r?\n---\r?\n/);
 
     if (!fmMatch) {
         errors.push('Missing or malformed frontmatter (---)');
@@ -29,20 +29,26 @@ function validateSkill(skillPath) {
         const fmSection = fmMatch[1];
         const fm = {};
         
-        // Better line-by-line parsing for basic YAML-like structure
-        const lines = fmSection.split('\n');
-        lines.forEach(line => {
+        const fmLines = fmSection.split('\n');
+        let currentKey = null;
+        fmLines.forEach(line => {
             const match = line.match(/^(\w+):\s*(.*)/);
             if (match) {
-                const key = match[1].trim();
+                currentKey = match[1].trim();
                 const val = match[2].trim();
-                fm[key] = val;
+                fm[currentKey] = val;
+            } else if (currentKey && line.startsWith('  ')) {
+                // Continuation of a multi-line string
+                fm[currentKey] += ' ' + line.trim();
             }
         });
 
         // Validate required fields
         if (!fm.name) errors.push('Frontmatter: missing "name"');
         else if (fm.name !== skillName) errors.push(`Frontmatter: "name" (${fm.name}) does not match folder name (${skillName})`);
+
+        if (!fm.description) errors.push('Frontmatter: missing "description"');
+        else if (fm.description.length >= 1000) errors.push(`Frontmatter: "description" exceeds 1000 characters (${fm.description.length})`);
 
         if (!fm.domain) errors.push('Frontmatter: missing "domain"');
         else {
@@ -135,7 +141,7 @@ if (process.argv.includes('--json')) {
     if (totalErrors > 0) {
         console.log(`\n❌ Total errors found: ${totalErrors}`);
     } else {
-        console.log('\nAll skills passed SIP v1 strict checks.');
+        console.log('\nAll skills passed SIP strict checks.');
     }
 }
 

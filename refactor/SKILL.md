@@ -7,7 +7,6 @@ description: >
 domain: process
 composable: true
 yields_to: []
-version: 1.1.0
 ---
 
 # Refactor
@@ -75,7 +74,7 @@ Provide a final report confirming:
 
 ## Composability — Working With Other Skills
 
-> **See `PROTOCOL.md` (SIP v1.0.0) at skills root for full interop contract.**
+> **See `PROTOCOL.md` (SIP) at skills root for full interop contract.**
 
 ### Domain Declaration
 

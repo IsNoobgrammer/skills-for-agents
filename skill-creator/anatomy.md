@@ -76,7 +76,6 @@ yields_to: [process, craft]
 
 ```yaml
 ---
-version: 1.0.0        # semver — useful for tracking changes
 license: MIT           # SPDX identifier if sourced from licensed material
 scope: files           # sub-domain differentiator (e.g. compress uses scope: files)
 ---
@@ -277,7 +276,6 @@ Study these skills in the current ecosystem for different patterns:
 - [ ] Valid YAML, `name` matches folder
 - [ ] `description` is pushy and includes trigger phrases
 - [ ] `domain`, `composable`, `yields_to` declared
-- [ ] Version present if tracking changes
 
 ### Content
 - [ ] Instructions are imperative and actionable

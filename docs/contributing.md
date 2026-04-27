@@ -64,6 +64,7 @@ Create a new directory `your-skill-name/` and add `SKILL.md`.
 ---
 name: your-skill-name
 description: >
+  # NOTE: Must be LESS than 1000 characters total.
   What this skill does. When to use it. Include trigger phrases.
   Be pushy: "Use this whenever the user mentions X, wants Y, or is working with Z."
 domain: [domain]
@@ -103,7 +104,7 @@ yields_to: [list, of, domains]
 
 ## Composability — Working With Other Skills
 
-> See PROTOCOL.md (SIP v1.0.0) for full interop contract.
+> See PROTOCOL.md (SIP) for full interop contract.
 
 ### Domain Declaration
 
@@ -173,7 +174,7 @@ The PR reviewer bot will audit your skill for SIP compliance, clarity, and effic
 ### Frontmatter Rules
 
 - `name` — must match the folder name exactly
-- `description` — the most important field. Determines activation. Make it pushy and specific.
+- `description` — the most important field. Determines activation. Must be < 1000 characters. Make it pushy and specific.
 - `domain` — exactly one SIP domain type
 - `composable` — default `true`. Set `false` only with justification.
 - `yields_to` — requires real judgment. See [PROTOCOL.md §3](../PROTOCOL.md).
@@ -212,7 +213,7 @@ Put the most common instructions in `SKILL.md`. Put deep-dive details in `refere
 ## PR Checklist
 
 - [ ] `name` matches folder name
-- [ ] `description` includes specific trigger phrases
+- [ ] `description` includes specific trigger phrases and is < 1000 chars
 - [ ] `domain` is exactly one valid SIP domain
 - [ ] `composable: true` (or justified `false`)
 - [ ] `yields_to` is thoughtfully chosen

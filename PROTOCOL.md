@@ -9,12 +9,10 @@ description: >
 domain: protocol
 composable: false
 yields_to: []
-version: 1.0.0
 ---
 
 # SIP — Skills Interoperability Protocol
 
-> **Version**: 1.0.0
 
 Skills are not islands. They're composable units. This protocol defines how any skill works alongside any other skill — present or future — without needing to know about each other's internals.
 
@@ -195,6 +193,8 @@ No existing skill needs to be updated when a new skill is added. The protocol ha
 ```yaml
 ---
 name: my_new_skill
+description: >                      # Must be < 1000 characters
+  What this skill does. When to use it. Specific triggers.
 domain: voice | density | craft | process | content | analysis | testing
 composable: true
 yields_to: [list of domain types this skill defers to]
@@ -236,8 +236,8 @@ Skills should update this section when they discover gaps in the protocol. This 
 
 | Skill | Issue Found | Suggested Fix | Status |
 |-------|------------|---------------|--------|
-| postmortem | `yields_to: []` implies process is never overridden, but Safety/Accuracy (Precedence Rule 1) must always be able to override | Clarified in Section 3 Rule 1 that it is implicit and absolute regardless of `yields_to` | ✅ Fixed in v1.0.0 |
-| (all) | Protocol had no version number, making it hard to know if skills are reading stale versions | Added `version` field to YAML frontmatter + version display in header | ✅ Fixed in v1.0.0 |
+| postmortem | `yields_to: []` implies process is never overridden, but Safety/Accuracy (Precedence Rule 1) must always be able to override | Clarified in Section 3 Rule 1 that it is implicit and absolute regardless of `yields_to` | ✅ Fixed |
+| (all) | Large descriptions bloating system prompts and slowing down trigger detection | Enforced < 1000 character limit for `description` field in frontmatter | ✅ Fixed |
 
 ### How to add entries
 
@@ -245,7 +245,7 @@ When a skill discovers a gap, contradiction, or ambiguity in SIP:
 
 1. Add a row to the table above
 2. Set status to `🔍 Open` (discovered), `🔧 Proposed` (has a fix), or `✅ Fixed` (resolved)
-3. If the fix requires a protocol change, bump the version in frontmatter
+3. If the fix requires a protocol change, update the frontmatter accordingly.
 
 ---
 

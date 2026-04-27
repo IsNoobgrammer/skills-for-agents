@@ -40,7 +40,7 @@ Skills follow the **SIP Framework** ([docs/sip.md](docs/sip.md) / [PROTOCOL.md](
 
 > **Key rule**: Voice doesn't restructure process. Density doesn't strip personality. Craft doesn't rewrite prose. Process doesn't impose tone.
 
-New skills integrate automatically by declaring their domain in frontmatter. No existing skill needs updating.
+New skills integrate automatically by declaring their domain and a concise description (< 1000 chars) in frontmatter. No existing skill needs updating.
 
 ## Documentation
 

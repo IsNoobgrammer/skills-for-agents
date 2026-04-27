@@ -1,6 +1,6 @@
 # SIP — Skills Interoperability Protocol
 
-> **Version**: 1.0.0 | [**Full Spec**](../PROTOCOL.md) | [**Contributing**](../docs/contributing.md)
+> [**Full Spec**](../PROTOCOL.md) | [**Contributing**](../docs/contributing.md)
 
 The **Skills Interoperability Protocol (SIP)** is the universal contract that lets AI skills work together without breaking each other's output.
 
@@ -50,6 +50,8 @@ Every `SKILL.md` starts with frontmatter:
 ```yaml
 ---
 name: my-skill
+description: >
+  What this skill does. Specific triggers. (Must be < 1000 characters)
 domain: voice          ← exactly one of the above
 composable: true
 yields_to: [process]   ← domains this skill defers to

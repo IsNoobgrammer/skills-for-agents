@@ -12,7 +12,6 @@ description: >
 domain: process
 composable: true
 yields_to: []
-version: 1.0.0
 ---
 
 # Skill Creator
@@ -114,18 +113,19 @@ Every SKILL.md has two parts:
 ---
 name: skill-name                    # lowercase-with-hyphens, matches folder name
 description: >                      # THE triggering mechanism. Be specific AND pushy.
+  # NOTE: Must be LESS than 1000 characters total.
   What this skill does. When to use it. Include specific trigger phrases
   and contexts. Err on the side of triggering too often rather than too rarely.
 domain: voice | density | craft | process | content | analysis | testing
 composable: true                    # almost always true
 yields_to: [process, craft]         # domains this skill defers to
-version: 1.0.0                      # semver
 ---
 ```
 
 **Frontmatter rules:**
 - `name` must match the folder name exactly
 - `description` is the most important field — it determines whether the skill activates. Make it pushy. Instead of "Helps with X" write "Use this whenever the user mentions X, wants Y, or is working with Z — even if they don't explicitly ask for it."
+- `description` must be less than 1000 characters total.
 - `domain` must be exactly one of the SIP domain types
 - `composable` defaults to `true`. Set to `false` only if the skill genuinely cannot share output space (extremely rare)
 - `yields_to` requires real judgment — see SIP Section 3 for precedence rules
@@ -211,14 +211,14 @@ If you're past 500 lines, you need reference files. The SKILL.md becomes a route
 
 Every skill must end with a composability section. This is non-negotiable — it's what makes the ecosystem work.
 
-Read `PROTOCOL.md` (SIP v1.0.0) at the skills root before writing this. The section you write is the *implementation* of SIP for this specific skill.
+Read `PROTOCOL.md` (SIP) at the skills root before writing this. The section you write is the *implementation* of SIP for this specific skill.
 
 Use this template:
 
 ````markdown
 ## Composability — Working With Other Skills
 
-> **See `PROTOCOL.md` (SIP v1.0.0) at skills root for full interop contract.**
+> **See `PROTOCOL.md` (SIP) at skills root for full interop contract.**
 
 ### Domain Declaration
 
@@ -263,7 +263,7 @@ If [specific tension this skill might encounter]:
 - A density skill yields to `[process]` because you can't compress away required structure
 - A process skill yields to `[]` because the skeleton is sacred — nobody restructures it
 - A craft skill yields to `[voice, process]` because it doesn't control tone or workflow order
-- Safety/Accuracy always wins regardless — it's implicit per SIP Rule 1, never listed
+- Safety/Accuracy always wins — it's implicit per SIP Rule 1, never listed
 
 **The "When Defers" table is the contract's core.** Be concrete: `"Compress surrounding prose but preserve exact CSS values"` beats `"Defer to craft skills."` The AI reading this during composition needs to know exactly what to preserve and what to hand off.
 
@@ -372,6 +372,7 @@ For skills that predate SIP or lack composability:
 ### Frontmatter
 - [ ] `name` matches folder name
 - [ ] `description` is pushy enough to trigger reliably
+- [ ] `description` is LESS than 1000 characters
 - [ ] `description` includes specific trigger phrases and contexts
 - [ ] `domain` is declared and correct
 - [ ] `composable: true` (unless justified otherwise)
@@ -406,7 +407,7 @@ For skills that predate SIP or lack composability:
 
 ## Composability — Working With Other Skills
 
-> **See `PROTOCOL.md` (SIP v1.0.0) at skills root for full interop contract.**
+> **See `PROTOCOL.md` (SIP) at skills root for full interop contract.**
 
 ### Domain Declaration
 

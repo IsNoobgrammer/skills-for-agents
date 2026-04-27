@@ -8,7 +8,6 @@ description: >
 domain: craft
 composable: true
 yields_to: [process]
-version: 1.1.0
 ---
 
 # Harden
@@ -74,7 +73,7 @@ Provide a final checklist confirming:
 
 ## Composability — Working With Other Skills
 
-> **See `PROTOCOL.md` (SIP v1.0.0) at skills root for full interop contract.**
+> **See `PROTOCOL.md` (SIP) at skills root for full interop contract.**
 
 ### Domain Declaration
 

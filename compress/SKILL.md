@@ -395,7 +395,7 @@ For directories:
 
 ## Composability — Working With Other Skills
 
-> **See `PROTOCOL.md` (SIP v1.0.0) at skills root for full interop contract.**
+> **See `PROTOCOL.md` (SIP) at skills root for full interop contract.**
 
 ### Domain Declaration
 

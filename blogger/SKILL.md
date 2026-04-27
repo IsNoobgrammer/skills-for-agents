@@ -818,7 +818,7 @@ That usually fixes it. Always has.
 
 ## COMPOSABILITY — Working With Other Skills
 
-> **See `PROTOCOL.md` (SIP v1.0.0) at skills root for the full interoperability contract.**
+> **See `PROTOCOL.md` (SIP) at skills root for the full interoperability contract.**
 
 ### Domain Declaration
 

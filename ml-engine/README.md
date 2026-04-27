@@ -1,4 +1,4 @@
-# ml-engine v3.0.0
+# ml-engine
 
 TPU-first ML research engine for reproducible distributed training and ablation studies.
 
@@ -390,11 +390,3 @@ xr.initialize_cache('/tmp/xla_cache', readonly=False)
 torch_xla.experimental.eager_mode(True)
 ```
 
-## Version History
-
-| Version | Date | Changes |
-|---------|------|---------|
-| 3.0.0 | 2026-04 | `/ml` godmode scaffold, `/ml-ablate` (ablation matrix), `/ml-checkpoint` (save/resume/inspect), `/ml-profile` (XLA profiler). Resolved SKILL.md merge conflict, checkpoint section added as core instruction #16. |
-| 2.1.0 | 2025-07 | `/ml-port` (PyTorch → XLA native), `/ml-optimize` (XLA bottleneck + Pallas kernels), `/ml-plan` (research planning & templating) |
-| 2.0.0 | 2025-07 | Modern `torch_xla` APIs, FSDPv2, SPMD, `@assume_pure`, `scan_layers`, `torchax`, compilation cache, eager mode, `torch.compile` openxla |
-| 1.0.0 | 2024-12 | Initial release: TPU setup, MoE, attention kernels, data pipeline, wandb, evaluation |

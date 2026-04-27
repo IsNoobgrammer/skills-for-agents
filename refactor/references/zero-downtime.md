@@ -27,8 +27,8 @@ Two identical environments. Traffic switches between them instantly.
 ```
 Load Balancer
      │
-     ├──► BLUE  (current live, v1.0)
-     └──► GREEN (new version, v1.1) ← deploy here first
+     ├──► BLUE  (current live, old)
+     └──► GREEN (new version, new) ← deploy here first
 ```
 
 ### Requirements your code must satisfy:
@@ -78,19 +78,19 @@ if (config.enablePayments) { ... }
 Instances replaced one at a time. No full cutover needed.
 
 ```
-Deploy v1.1 to instance 1 → health check passes → remove from rotation → replace → add back
-Deploy v1.1 to instance 2 → repeat
+Deploy new to instance 1 → health check passes → remove from rotation → replace → add back
+Deploy new to instance 2 → repeat
 ```
 
 ### Your code must be backward-compatible during the rollout window:
 
-Old (v1.0) and new (v1.1) instances run simultaneously for a few minutes.
+Old (old) and new (new) instances run simultaneously for a few minutes.
 
 ```js
-// ❌ Bad — v1.1 sends a field that v1.0 doesn't understand
+// ❌ Bad — new sends a field that old doesn't understand
 // This causes errors while both versions are live
 
-// ✅ Good — v1.1 adds optional fields, never removes required ones
+// ✅ Good — new adds optional fields, never removes required ones
 // Old instances ignore unknown fields, new instances use them
 ```
 

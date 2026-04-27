@@ -2,23 +2,15 @@
 name: ml-engine
 description: >
   TPU-first ML research engine for reproducible distributed training and ablation studies.
-  Use this whenever the user mentions PyTorch-XLA, JAX, TPU, SPMD, GSPMD, distributed training,
-  MoE, router, FFN, LayerNorm, ablation, datasets, optax, wandb, einops,
-  torchtpu, Pallas custom kernels, multi-pod training, optimizer tuning, data pipeline,
-  model architecture, evaluation, checkpointing, or logging on TPU.
-  Triggers on: TPU training, v2-8, v3-8, v3-64, torch_xla, PyTorch-XLA, torchtpu, JAX,
-  distributed, sharding, MoE, Mixture of Experts, router, custom FFN, custom LayerNorm,
-  flash attention, splash attention, Pallas, custom kernel, SPMD, GSPMD, datasets streaming,
-  wandb logging, evaluation loop, checkpointing, multi-pod, v3-32, v4-128,
-  torch_xla.step, torch_xla.sync, torch_xla.launch, torch_xla.compile,
-  FSDPv2, assume_pure, scan_layers, torchax, eager_mode, compilation cache, MpDeviceLoader,
-  while_loop, fori_loop, torch.compile openxla, DDP xla backend,
+  Use for PyTorch-XLA, JAX, TPU, SPMD, GSPMD, MoE, router, Pallas, multi-pod training,
+  FSDPv2, and sharded data pipelines.
+  Triggers on: TPU, v2-8, v3-8, v3-64, torch_xla, JAX, distributed, sharding, MoE,
+  router, flash/splash attention, Pallas, custom kernel, SPMD, GSPMD, FSDPv2, torchax,
   /ml, /ml-train, /ml-mesh, /ml-debug, /ml-benchmark, /ml-migrate, /ml-port,
   /ml-optimize, /ml-plan, /ml-ablate, /ml-checkpoint, /ml-profile.
 domain: process
 composable: true
 yields_to: [craft, voice]
-version: 3.0.0
 ---
 
 # ml-engine
@@ -552,7 +544,7 @@ scores = einsum(q, k, 'b h i d, b h j d -> b h i j')
 
 ## Composability — Working With Other Skills
 
-> **See `PROTOCOL.md` (SIP v1.0.0) at skills root for full interop contract.**
+> **See `PROTOCOL.md` (SIP) at skills root for full interop contract.**
 
 ### Domain Declaration
 
