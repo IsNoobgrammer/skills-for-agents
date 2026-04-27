@@ -15,6 +15,7 @@ A collection of composable, domain-specific instruction sets for AI agents. Each
 | [`harden`](harden/) | **craft** | Production-harden code for 1M+ users. Caching, rate limiting, graceful shutdown. |
 | [`refactor`](refactor/) | **process** | Restructure messy codebases into clean, modular architecture. |
 | [`ml-engine`](ml-engine/) | **process** | TPU-first ML research engine. Distributed training, MoE, Pallas kernels, 12+ commands. |
+| [`memory`](memory/) | **process** | Persistent context engine. Daily journal rotation, manifest indexing, identity tracking. |
 
 ## They Compose
 
