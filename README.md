@@ -22,7 +22,7 @@ Then there's `skill-creator`. The meta-skill. The skill that builds skills. It k
 
 ## They Work Together
 
-Skills aren't islands. They compose. See [`PROTOCOL.md`](PROTOCOL.md) for the full spec, but here's the gist:
+Skills aren't islands. They compose. See the [SIP Framework](docs/sip.md) for the "why" and [`PROTOCOL.md`](PROTOCOL.md) for the technical spec. Here's the gist:
 
 Every skill owns a **domain** — the specific aspect of output it controls:
 
@@ -52,6 +52,12 @@ When you invoke multiple skills, they don't fight — they compose:
 **The key rule**: each skill handles its domain and respects the others. Voice doesn't restructure process. Density doesn't strip personality. Craft doesn't rewrite prose. Process doesn't impose tone.
 
 New skills automatically integrate by declaring their domain in frontmatter and following the protocol. No existing skill needs updating.
+
+## Documentation
+
+- [**SIP Framework**](docs/sip.md) — What SIP is and how it solves composability.
+- [**Contributing Guide**](docs/contributing.md) — How to add new skills using `skill-creator`.
+- [**Support Bots**](docs/bots.md) — How Shaurya reviews PRs and helps with issues.
 
 ---
 
