@@ -1,0 +1,7 @@
+# Linguist Overrides
+# ------------------
+# We want the repository to be classified as a Markdown project.
+# Since JavaScript is only used for bot scripts, we mark it as documentation.
+
+*.js linguist-documentation=true
+*.md linguist-detectable=true
