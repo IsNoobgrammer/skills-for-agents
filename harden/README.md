@@ -1,12 +1,12 @@
-# 🚀 production-ready
+# Harden
 
-A Claude skill that acts as a FAANG-level SRE and backend architect to harden an already clean, modular codebase for production at scale — **1 million+ concurrent users**, **zero-downtime deploys**, **no structural changes**.
+Production-harden an already clean, modular codebase for scale — **1M+ concurrent users**, **zero-downtime deploys**, **no structural changes**.
 
 ---
 
 ## When to use this skill
 
-Use this when your code is **already clean and structured** but missing production patterns:
+Use when code is **already clean and structured** but missing production patterns:
 
 - "Make this production ready"
 - "Add caching to my app"
@@ -16,13 +16,13 @@ Use this when your code is **already clean and structured** but missing producti
 - "Audit my code for production gaps"
 - "Add monitoring / health checks"
 
-> ⚠️ If your code is messy or monolithic, use [`codebase-refactor`](../codebase-refactor) instead.
+> ⚠️ If your code is messy or monolithic, use [`refactor`](../refactor) instead.
 
 ---
 
 ## What it does
 
-Audits your clean code and **adds only missing production patterns** — no renaming, no restructuring, no moving files.
+Audits clean code and **adds only missing production patterns** — no renaming, no restructuring, no moving files.
 
 | Phase | What happens |
 |-------|-------------|
@@ -35,7 +35,7 @@ Audits your clean code and **adds only missing production patterns** — no rena
 
 ## Priority tiers
 
-Gaps are fixed in priority order — most dangerous first:
+Gaps fixed most-dangerous-first:
 
 ### P0 — Will crash under load
 - Connection pooling
@@ -67,13 +67,13 @@ Gaps are fixed in priority order — most dangerous first:
 
 ## Hard rules
 
-This skill will **NEVER**:
+**NEVER**:
 - Rename functions, variables, or files
 - Move code between files
 - Change folder structure
 - Rewrite business logic
 
-It will **ONLY** add missing patterns on top of existing code.
+**ONLY** adds missing patterns on top of existing code.
 
 ---
 
@@ -87,7 +87,7 @@ Stack-agnostic. Works with:
 
 ---
 
-## MCP / AI Agent usage
+## Invocation modifiers
 
 ```
 [AUDIT_ONLY]  → Phase 1 report only, no changes
@@ -105,7 +105,7 @@ Stack-agnostic. Works with:
 ## File structure
 
 ```
-production-ready/
+harden/
 ├── SKILL.md                      ← main skill instructions
 ├── README.md                     ← this file
 └── references/
@@ -116,4 +116,4 @@ production-ready/
 
 ## Install
 
-Drop the `production-ready/` folder into your Claude skills directory. Claude will auto-trigger this skill when it detects production hardening intent on clean code.
+Drop the `harden/` folder into your agent's skills directory. Auto-triggers on production-hardening intent.

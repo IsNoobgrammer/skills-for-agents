@@ -1,30 +1,32 @@
-# Support Bots
+# Automation Bots
 
-This repository is guarded by a few automated bots (voiced by Shaurya) to keep the quality high and the fluff low.
+Automated quality gates that run on issues, pull requests, and every commit.
 
-## 1. The PR Reviewer (`ai-reviewer.js`)
+## 1. PR Reviewer (`scripts/ai-reviewer.js`)
 
-When you open a Pull Request involving a new skill, the AI Reviewer kicks in.
+Runs on every pull request that adds or modifies a skill.
 
-- **Vibe Check**: It ensures the skill matches the "AntiGravity" philosophy (no corporate fluff, high efficiency).
-- **Subjective Audit**: It rates your skill (1-10) on Clarity, Edge Cases, and Quality.
-- **SIP Compliance**: It verifies that your `SKILL.md` composes well with other skills.
+- **Quality Audit**: Rates the skill 1–10 on Clarity, Edge Cases, and Comprehensiveness.
+- **SIP Compliance**: Verifies frontmatter (`name`, `domain`, `composable`, `yields_to`) and required sections.
+- **Efficiency Check**: Flags corporate fluff, unnecessary verbosity, and missed compression opportunities.
 
-## 2. The Issue Bot (`issue-bot.js`)
+## 2. Issue Bot (`scripts/issue-bot.js`)
 
-If you open an issue, Shaurya will likely reply within minutes.
+Triages new issues automatically.
 
-- **Feature Requests**: If you suggest a skill, the bot might give you a head start on the logic or point you to `skill-creator`.
-- **Bug Reports**: It acknowledges bugs bluntly and flags them for review.
-- **Questions**: It answers technical questions about SIP or specific skills.
+- **Feature Requests**: Suggests skill structure or points to `skill-creator`.
+- **Bug Reports**: Acknowledges, categorizes, and flags for maintainer review.
+- **Questions**: Routes SIP questions to docs, skill questions to the relevant folder.
 
-## 3. The SIP Validator (`sip-validator.js`)
+## 3. SIP Validator (`scripts/sip-validator.js`)
 
-This is the static analysis engine. It runs on every commit to ensure:
+Static analysis engine. Runs on every commit.
 
-- **Frontmatter is correct**: `name`, `domain`, `composable`, and `yields_to` are all present.
-- **Required sections exist**: Every skill must have "When to Use", "Core Instructions", and "Composability".
-- **Size constraints**: Skills must be between 50 and 500 lines. Too short is usually vague; too long is a monolith that needs splitting.
+| Check | Rule |
+|-------|------|
+| Frontmatter | `name`, `domain`, `composable`, `yields_to` all present |
+| Required sections | "When to Use", "Core Instructions", "Composability" must exist |
+| Size constraints | 50–500 lines per `SKILL.md`. Too short = vague. Too long = split it. |
 
-> [!NOTE]
-> All bots use the Gemini API and are configured to speak in Shaurya's authentic, Hinglish-native, developer-centric voice.
+> [!TIP]
+> Run the validator locally before opening a PR: `node scripts/sip-validator.js <skill-folder>`

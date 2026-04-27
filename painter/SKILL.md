@@ -453,4 +453,4 @@ If craft standards conflict with another skill's output:
 
 ## License & Attribution
 
-MIT. Knowledge base distilled from Anthropic's frontend-design skill (Apache 2.0). Extended with motion design, 23+ commands, and godmode pipeline.
+MIT. Knowledge base distilled from an open-source frontend-design skill (Apache 2.0). Extended with motion design, 23+ commands, and godmode pipeline.

@@ -36,7 +36,6 @@ Drop caveman for: security warnings, irreversible actions, multi-step sequences 
 
 ## Files
 
-- `SKILL.md` — Full skill definition for Windsurf/Cascade
+- `SKILL.md` — Full skill definition with Hinglish-compatible modes
 - `original_SKILL.md` — Original caveman skill with `wenyan` (classical Chinese) modes
-- `.windsurf/workflows/review.md` — Code review workflow
 
