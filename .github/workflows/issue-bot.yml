@@ -2,7 +2,7 @@ name: Issue Feedback Bot
 
 on:
   issues:
-    types: [opened]
+    types: [opened, edited, labeled]
 
 permissions:
   issues: write
@@ -21,9 +21,9 @@ jobs:
       - name: Run Issue Bot
         id: bot
         run: |
-          OUT=$(node scripts/issue-bot.js) || true
+          # Capture both stdout and stderr
+          OUT=$(node scripts/issue-bot.js 2>&1) || true
           
-          # Clean up for GH output (escape newlines)
           echo "REPORT<<EOF" >> $GITHUB_OUTPUT
           echo -e "$OUT" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -38,7 +38,7 @@ jobs:
         with:
           script: |
             const report = process.env.REPORT.trim();
-            if (report && !report.includes("No GEMINI_API_KEY provided")) {
+            if (report) {
               github.rest.issues.createComment({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,

@@ -5,8 +5,8 @@ const apiKey = process.env.GEMINI_API_KEY;
 const issueTitle = process.env.ISSUE_TITLE || 'No Title';
 const issueBody = process.env.ISSUE_BODY || 'No Body provided';
 
-if (!process.env.GEMINI_API_KEY && process.env.GITHUB_ACTIONS) {
-    console.error("No GEMINI_API_KEY provided in GitHub Actions. Skipping issue response.");
+if (!apiKey && process.env.GITHUB_ACTIONS) {
+    console.log("⚠️ **Issue Bot Error**: `GEMINI_API_KEY` is missing from GitHub Secrets. \n\nShaurya can't reply until you add the key to this repo's secrets. Go to **Settings > Secrets and variables > Actions** and add `GEMINI_API_KEY`.");
     process.exit(0);
 }
 
