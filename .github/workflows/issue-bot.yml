@@ -1,0 +1,50 @@
+name: Issue Feedback Bot
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  reply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run Issue Bot
+        id: bot
+        run: |
+          OUT=$(node scripts/issue-bot.js) || true
+          
+          # Clean up for GH output (escape newlines)
+          echo "REPORT<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$OUT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+
+      - name: Comment on Issue
+        if: steps.bot.outputs.REPORT != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const report = process.env.REPORT.trim();
+            if (report && !report.includes("No GEMINI_API_KEY provided")) {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: report
+              })
+            }
+        env:
+          REPORT: ${{ steps.bot.outputs.REPORT }}
