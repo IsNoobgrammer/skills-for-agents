@@ -14,6 +14,7 @@ A collection of composable, domain-specific instruction sets for AI agents. Each
 | [`skill-creator`](skill-creator/) | **process** | Meta-skill for creating, auditing, and improving other skills. SIP compliance built in. |
 | [`harden`](harden/) | **craft** | Production-harden code for 1M+ users. Caching, rate limiting, graceful shutdown. |
 | [`refactor`](refactor/) | **process** | Restructure messy codebases into clean, modular architecture. |
+| [`ml-engine`](ml-engine/) | **process** | TPU-first ML research engine. Distributed training, MoE, Pallas kernels, 12+ commands. |
 
 ## They Compose
 
