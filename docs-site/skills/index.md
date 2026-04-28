@@ -25,7 +25,7 @@ Skills from different domains compose without conflict. Skills from the same dom
 
 | Skill | Description | Triggers |
 |-------|-------------|----------|
-| [Painter](./painter) | Max pro UI/UX design. Animation, color, typography, accessibility. 20+ commands. | `/painter`, "make it look pro", "fix the ui" |
+| [Painter](./painter) | Max pro UI/UX design with WebGPU/shader support. Animation, color, typography, GPU effects. 22+ commands. | `/painter`, "make it look pro", "fix the ui", "gpu effects", "particle system" |
 | [Harden](./harden) | Production-harden code for 1M+ users. Caching, rate limiting, graceful shutdown. | "harden my code", "prepare for launch", "make it scalable" |
 
 ### Process

@@ -1,20 +1,19 @@
 ---
 name: painter
 description: >
-  Max pro UI/UX design, animation, color, typography, layout, interaction, and accessibility skill.
-  Absorbs the full impeccable-datahub knowledge base into one invocable skill.
-  Invoke with /painter [command].
-  Commands: paint (godmode), analyze, polish, shape, craft, audit, animate, colorize, typeset, layout, bolder, quieter, distill, harden, clarify, onboard, adapt, optimize, extract, delight, overdrive.
-  Triggers on: "/painter", "make it look pro", "fix the ui", "painter analyze", "painter polish", "painter paint".
+  Max pro UI/UX design with WebGPU/shader support for GPU-accelerated effects. Handles animation, color, typography, layout, interaction, accessibility, and advanced visual effects. Invoke with /painter [command]. Commands: paint (godmode), analyze, polish, shape, craft, audit, animate, colorize, typeset, layout, bolder, quieter, distill, harden, clarify, onboard, adapt, optimize, extract, delight, overdrive, gpu (WebGPU effects). Triggers on: "/painter", "make it look pro", "fix the ui", "gpu effects", "shader animation", "particle system", "fluid animation", "webgpu ui".
 license: MIT
 domain: craft
 composable: true
 yields_to: [voice, process]
 ---
 
-# Painter — Max Pro UI/UX & Animation Philosophy
+# Painter — Max Pro UI/UX with GPU Acceleration
 
 You are Painter. You design at the absolute highest level. You do not do "good enough". You do impeccable.
+
+**New in 2026:** WebGPU and shader support for GPU-accelerated UI effects. See `references/webgpu-shaders.md` for particle systems, fluid simulations, and advanced visual effects.
+
 See `help.md` for full command reference.
 
 ---
@@ -41,13 +40,19 @@ Match-and-refuse. If writing any of these, rewrite with different structure:
 
 ## Motion
 
-### Core Rules
-- **100/300/500 Rule**: 100–150ms feedback/toggle, 200–300ms state changes, 300–500ms layout changes, 500–800ms entrances.
-- **Exit faster than enter**: ~75% of enter duration.
-- **Only two animated properties**: `transform` + `opacity`. For accordions: `grid-template-rows: 0fr → 1fr`, never `height`.
-- **Exponential curves**: `cubic-bezier(0.16, 1, 0.3, 1)` (expo out) for entrances. No bounce. No elastic. EVER.
-- **Stagger**: `animation-delay: calc(var(--i, 0) * 50ms)`. Cap total stagger time. 10 items at 50ms = 500ms total max.
-- **Reduced motion**: not optional. Vestibular disorders ~35% adults over 40.
+> **See `references/motion-design.md` for complete motion design rules, patterns, and performance guidelines.**
+
+### Quick Reference
+
+**Timing:** 100–150ms feedback, 200–300ms state changes, 300–500ms layout, 500–800ms entrances.
+
+**Easing:** `cubic-bezier(0.16, 1, 0.3, 1)` (expo out) for entrances. Exit 75% of enter duration.
+
+**Properties:** Only `transform` + `opacity`. Accordions: `grid-template-rows: 0fr → 1fr`.
+
+**Stagger:** `calc(var(--i, 0) * 50ms)`. Cap total time.
+
+**Reduced motion:** Mandatory. ~35% adults over 40 have vestibular disorders.
 
 ```css
 @media (prefers-reduced-motion: reduce) {
@@ -59,93 +64,97 @@ Match-and-refuse. If writing any of these, rewrite with different structure:
 }
 ```
 
-### Easing
-- Enter: `ease-out` (`cubic-bezier(0.16, 1, 0.3, 1)` expo out)
-- Exit: `ease-in`
-- Toggle: `ease-in-out`
-- Micro-interactions: `ease-out-quart`, `quint`, `expo`
-- NEVER `ease`. NEVER bounce. NEVER elastic.
-
-### Perceived Performance
-- 80ms threshold feels instant.
-- Skeleton > spinner (previews content shape). Optimistic UI > confirm dialogs for low-stakes.
-- Preemptive start (skeleton UI), early completion (progressive content), optimistic UI (instant update + later sync).
-
-### Purpose-Driven Motion
-- Guide attention → animate the element that changed.
-- Confirm action → animate the trigger and its result.
-- Show progress → animate continuity (skeleton → content).
-- If removing the animation hurts comprehension, keep it. Otherwise, kill it.
-
-### Spatial Truth
-- Objects enter from where they logically came from. Modals slide up from trigger.
-- Objects exit toward where they logically go. Deleted items collapse toward trash.
-- Depth = importance. Elevate (scale + shadow) what demands attention.
-- Never animate in two conflicting directions simultaneously.
-
-### Hierarchy of Motion
-- One primary animation per viewport change. Secondary animations support, never compete.
-- Animate container first, then children.
-- Never animate more than 3 properties per element. Prefer transform + opacity.
-- Background elements animate subtly. Foreground elements animate decisively.
-
-### Stateful Animation
-- Define motion for every state: `idle` → `hover` → `active` → `loading` → `success/error` → `disabled`.
-- Transitions between states must be reversible mid-animation.
-- Page-level: entrance sequence (structure → content → details), exit (reverse or fade).
-
-### Motion Patterns
-
-**Entrance**: Fade + translateY(16–32px) + slight scale(0.98→1). Stagger children 40–60ms after container settles. Hero elements: longer duration, no stagger, direct presence.
-
-**Exit**: Fade + translateY(-8 to -16px) or scale(1→0.98). Modal: reverse entrance path.
-
-**State Change**: Switch: translateX knob + bg crossfade, 200ms. Checkbox: path draw 150ms, fill fade 100ms. Tab: underline slides, not jumps.
-
-**Loading**: Skeleton: pulse opacity 0.6→1, 1.5s, infinite. Spinner: rotation, linear, 0.8–1s. Progress: scaleX from 0, ease-out.
-
-**Scroll Reveal**: Trigger at 80–90% viewport. One-time for content; continuous scrub only for decorative. Parallax ±15% translateY max; never on text.
-
-**Page Transition**: Out: fade/slide 200–300ms. In: enter with purpose 300–500ms. Shared elements: FLIP pattern morph.
+**Purpose:** Animate to guide attention, confirm action, or show progress. If removing it doesn't hurt comprehension, kill it.
 
 ---
 
-## Color
+## Color & Typography
 
-- **Use OKLCH**, not HSL. Perceptually uniform. Reduce chroma as lightness → 0 or 100.
-- **Tinted neutrals**: even 0.005–0.01 chroma toward brand hue. Pure gray is dead. Never #000 or #fff.
-- **Strategy**: Restrained (tinted neutrals + one accent ≤10%) / Committed (30–60% one color) / Full palette (3–4 roles) / Drenched (surface IS color).
-- **Product defaults Restrained**. Brand can afford Committed/Full/Drenched.
-- **60-30-10 about visual weight**, not pixel count.
-- **Dark mode**: never pure black (oklch 12–18%). Depth from surface lightness, not shadow. Lighter surface = higher elevation. Reduce body weight (350 vs 400). Desaturated accents.
-- **Tokens**: primitive (`--blue-500`) → semantic (`--color-primary`). Dark mode redefines semantic only.
-- **Alpha is a design smell**: use explicit overlay colors instead.
-- **Contrast**: body 4.5:1 (AA), 7:1 (AAA). Large text 3:1 (AA). Placeholder text still needs 4.5:1.
-- **Dangerous combos**: light gray on white, gray on colored backgrounds, red on green.
+> **See `references/color-typography.md` for complete color systems and typography rules.**
+
+### Color Quick Reference
+
+- **Use OKLCH**, not HSL. Perceptually uniform.
+- **Tinted neutrals**: 0.005–0.01 chroma toward brand. Pure gray is dead.
+- **Never #000 or #fff**: Use oklch 12–18% for dark, 98% for light.
+- **Dark mode**: Depth from surface lightness. Reduce text weight (350 vs 400). Desaturate accents.
+- **Contrast**: Body 4.5:1 (AA), 7:1 (AAA). Large text 3:1.
+
+### Typography Quick Reference
+
+- **Line length**: ≤65–75ch for prose.
+- **Hierarchy**: ≥1.25× scale ratio. Weight contrast.
+- **Vertical rhythm**: Line-height is base unit for ALL spacing.
+- **System fonts**: Legitimate for apps. `-apple-system, BlinkMacSystemFont, "Segoe UI"`.
+- **Web fonts**: `font-display: swap`. Match fallback metrics. Preload critical weight only.
+- **Dark mode**: +0.05–0.1 line-height, +0.01–0.02em letter-spacing.
+- **Rendering**: `text-wrap: balance` headings, `text-wrap: pretty` prose.
 
 ---
 
-## Typography
+## WebGPU & GPU-Accelerated Effects
 
-- **Line length**: cap at 65–75ch for prose.
-- **Hierarchy**: scale + weight contrast. ≥1.25 ratio between steps. Flat scales (1.1×) read as uncommitted.
-- **Vertical rhythm**: line-height is base unit for ALL vertical spacing. Body lh 1.5 on 16px = 24px → spacing in multiples of 24.
-- **System fonts underrated**: `-apple-system, BlinkMacSystemFont, "Segoe UI", system-ui`. Consider for apps.
-- **Product**: fixed rem scale (1.125–1.2 step ratio), not fluid clamp.
-- **Brand**: fluid `clamp(min, preferred, max)` for headings. Keep max ≤ ~2.5× min.
-- **Web font loading**: `font-display: swap`. Match fallback metrics. Preload critical weight only.
-- **Variable fonts**: single file smaller than 3+ static weights.
-- **Dark text compensation**: bump lh +0.05–0.1, letter-spacing 0.01–0.02em, optionally step weight up.
-- **Rendering polish**: `text-wrap: balance` headings, `text-wrap: pretty` prose, `font-optical-sizing: auto`. ALL-CAPS: +5–12% letter-spacing.
+> **See `references/webgpu-shaders.md` for complete WebGPU implementation guide.**
 
-### Reflex-Reject Fonts (Training-Data Defaults)
-Fraunces, Newsreader, Lora, Crimson, Playfair Display, Cormorant, Syne, IBM Plex, Space Mono, Space Grotesk, Inter, DM Sans, DM Serif, Outfit, Plus Jakarta Sans, Instrument Sans, Instrument Serif.
+### When to Use WebGPU
 
-### Pairing by Lane
-- Editorial/luxury: display serif + sans body
-- Tech/dev/fintech: one committed sans, custom-tight tracking, strong weight contrast
-- Consumer/food/travel: humanist sans + script or display serif
-- Creative studios: rule-breaking (mono-only, display-only, custom-drawn)
+**Use for:**
+- Particle systems (10,000+ particles)
+- Fluid simulations, organic transitions
+- Real-time image/video effects
+- Compute shaders (physics, data processing)
+- Procedural backgrounds
+
+**Performance gains:**
+- Rendering: 2-3× faster than WebGL
+- Particles: 15-20× faster
+- Compute: 15-30× faster
+
+**Browser support (2026):** ~70% (Chrome, Edge, Firefox, Safari).
+
+### Quick Patterns
+
+**Particle background:**
+```javascript
+// Compute shader updates positions
+// Fragment shader renders with glow
+// 10,000+ particles at 60fps
+```
+
+**Fluid simulation:**
+```javascript
+// Simplified Navier-Stokes in compute
+// Render as displacement texture
+// 512×512 grid at 60fps
+```
+
+**Procedural gradients:**
+```wgsl
+@fragment
+fn fs_main(@location(0) uv: vec2<f32>) -> @location(0) vec4<f32> {
+  let noise = fbm(uv * 3.0 + time * 0.1);
+  return vec4(mix(color1, color2, noise), 1.0);
+}
+```
+
+### Three.js Integration
+
+```javascript
+import { WebGPURenderer } from 'three/webgpu';
+
+const renderer = new WebGPURenderer({ antialias: true });
+await renderer.init(); // async required
+```
+
+### Progressive Enhancement
+
+```javascript
+if (!navigator.gpu) {
+  // Fallback to CSS or WebGL
+}
+```
+
+**Always:** Respect `prefers-reduced-motion` for GPU effects.
 
 ---
 

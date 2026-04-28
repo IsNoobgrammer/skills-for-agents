@@ -40,6 +40,7 @@ Painter is your max-pro UI/UX skill. It doesn't patch — it elevates to `impecc
 | `/painter colorize` | Strategic color. OKLCH, semantic roles, 60-30-10 weight rule. Strategy: Restrained/Committed/Full/Drenched. |
 | `/painter layout` | Fix spatial rhythm. 4pt grid, kill card abuse, fix z-index, gap over margins, squint test. |
 | `/painter typeset` | Fix fonts, modular scale, 65–75ch line length, web font loading, reflex-reject list, pairing by lane. |
+| `/painter gpu` | **NEW:** WebGPU/shader effects. Particle systems (10k+), fluid sims, procedural backgrounds, GPU-accelerated filters. See `references/webgpu-shaders.md`. |
 | `/painter clarify` | Improve UX copy. Error formula, verb+object buttons, empty states, terminology consistency. |
 | `/painter bolder` | Amplify boring designs. Dramatic scale jumps, weight contrast (900 vs 200), asymmetric layouts, entrance choreography. |
 | `/painter quieter` | Tone down overstimulation. Reduce saturation 70–85%, flatten nesting, soften motion, increase whitespace. |
@@ -50,7 +51,7 @@ Painter is your max-pro UI/UX skill. It doesn't patch — it elevates to `impecc
 | `/painter optimize` | Performance. Core Web Vitals (LCP <2.5s, INP <200ms, CLS <0.1), images, JS splitting, CSS contain, fonts. |
 | `/painter extract` | Pull reusable tokens and components into a design system. Only extract patterns used 3+ times. |
 | `/painter delight` | Add moments of joy. Success states, micro-interactions, easter eggs, contextual animation. |
-| `/painter overdrive` | Push past conventional. View Transitions, WebGL, scroll-driven animations, spring physics, @property. |
+| `/painter overdrive` | Push past conventional. View Transitions, WebGL/WebGPU, scroll-driven animations, spring physics, @property. |
 
 ---
 
@@ -71,7 +72,7 @@ Painter is your max-pro UI/UX skill. It doesn't patch — it elevates to `impecc
 | Need edge case testing | `/painter harden` |
 | Need first-run experience | `/painter onboard` |
 | Performance issues | `/painter optimize` |
-| Want something extraordinary | `/painter overdrive` |
+| Want something extraordinary | `/painter overdrive` or `/painter gpu` |
 
 ---
 

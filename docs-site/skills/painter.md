@@ -1,10 +1,10 @@
 # Painter
 
-Max pro UI/UX design, animation, color, typography, layout, interaction, and accessibility skill.
+Max pro UI/UX design with WebGPU/shader support for GPU-accelerated effects. Handles animation, color, typography, layout, interaction, accessibility, and advanced visual effects.
 
 ## Domain
 
-**Craft** — controls visual design, UI/UX, motion, color, typography, layout, interaction design, accessibility, and performance of frontend output.
+**Craft** — controls visual design, UI/UX, motion, color, typography, layout, interaction design, accessibility, performance, and GPU-accelerated effects of frontend output.
 
 ## When to Use
 
@@ -39,6 +39,7 @@ Max pro UI/UX design, animation, color, typography, layout, interaction, and acc
 | `/painter extract` | Generate DESIGN.md (Google Stitch format, tokens, components) | `/painter extract` |
 | `/painter delight` | Add polish (micro-interactions, easter eggs, personality) | `/painter delight` |
 | `/painter overdrive` | Extraordinary (View Transitions, WebGL, spring physics, scroll-driven) | `/painter overdrive` |
+| `/painter gpu` | **NEW:** WebGPU/shader effects. Particle systems (10k+), fluid sims, procedural backgrounds, GPU-accelerated filters. | `/painter gpu` |
 
 ## Core Philosophy
 
@@ -92,6 +93,50 @@ Not optional. Vestibular disorders ~35% adults over 40.
   }
 }
 ```
+
+## WebGPU & GPU-Accelerated Effects
+
+**New in 2026:** WebGPU support for GPU-accelerated UI effects.
+
+### When to Use WebGPU
+
+- Particle systems (10,000+ particles)
+- Fluid simulations, organic transitions
+- Real-time image/video effects
+- Compute shaders (physics, data processing)
+- Procedural backgrounds
+
+### Performance Gains
+
+- Rendering: 2-3× faster than WebGL
+- Particles: 15-20× faster
+- Compute: 15-30× faster
+- Example: 15k objects at 15 FPS (WebGL) → 200k objects at 60 FPS (WebGPU)
+
+### Browser Support
+
+~70% in 2026 (Chrome, Edge, Firefox, Safari). Always provide fallbacks.
+
+### Three.js Integration
+
+```javascript
+import { WebGPURenderer } from 'three/webgpu';
+
+const renderer = new WebGPURenderer({ antialias: true });
+await renderer.init(); // async required
+```
+
+### Progressive Enhancement
+
+```javascript
+if (!navigator.gpu) {
+  // Fallback to CSS or WebGL
+}
+```
+
+**Always:** Respect `prefers-reduced-motion` for GPU effects.
+
+---
 
 ## Color
 
