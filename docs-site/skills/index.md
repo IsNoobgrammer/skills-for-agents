@@ -1,6 +1,10 @@
 # Skills
 
+<<<<<<< HEAD
 13 production-ready skills for AI agents. Each owns one domain and composes cleanly with others.
+=======
+12 production-ready skills for AI agents. Each owns one domain and composes cleanly with others.
+>>>>>>> b0d0bac43d0066abae6528bd81e66a7493c57cbc
 
 ::: tip Domain Separation
 Skills from different domains compose without conflict. Skills from the same domain follow precedence rules defined in the [SIP Framework](/guide/sip-framework).
@@ -44,7 +48,10 @@ Skills from different domains compose without conflict. Skills from the same dom
 |-------|-------------|----------|
 | [Documenter](./documenter) | Comprehensive documentation. Examples, guides, API references. | "document this", "write docs", "create documentation" |
 | [Researcher](./researcher) | Deep web research. Diverse sources, cross-referencing, synthesis. | "research X", "find info about Y", "what's the latest on Z" |
+<<<<<<< HEAD
 | [Learn](./learn) | Structured study plans and topic guides. Exam prediction, panic mode. | "teach me X", "study plan for Y", "I'm cooked" |
+=======
+>>>>>>> b0d0bac43d0066abae6528bd81e66a7493c57cbc
 
 ## Quick Comparison
 
@@ -55,7 +62,10 @@ Skills from different domains compose without conflict. Skills from the same dom
 | Compress | Density | ~600 | Medium | File compression |
 | Documenter | Content | ~1400 | High | Technical docs |
 | Harden | Craft | ~300 | Medium | Production readiness |
+<<<<<<< HEAD
 | Learn | Content | ~500 | Medium | Study guides & exams |
+=======
+>>>>>>> b0d0bac43d0066abae6528bd81e66a7493c57cbc
 | Memory | Process | ~400 | Medium | Session continuity |
 | ML Engine | Process | ~800 | High | ML research |
 | Painter | Craft | ~1200 | High | UI/UX design |

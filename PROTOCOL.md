@@ -34,9 +34,15 @@ Every skill has a **domain** — the specific aspect of the output it controls. 
 |-------------|-----------------|----------------|
 | **Voice** | Tone, vocabulary, personality, emotional register | blogger |
 | **Density** | Token count, verbosity, compression level | caveman, compress |
+<<<<<<< HEAD
 | **Craft** | Visual design, UI/UX, code quality of frontend output | painter, harden |
 | **Process** | Workflow steps, templates, structured output format | postmortem, memory, ml-engine, skill-creator, refactor |
 | **Content** | The actual substance being written about | documenter, researcher, learn |
+=======
+| **Craft** | Visual design, UI/UX, code quality of frontend output | painter |
+| **Process** | Workflow steps, templates, structured output format | postmortem |
+| **Content** | The actual substance being written about | (user's request) |
+>>>>>>> b0d0bac43d0066abae6528bd81e66a7493c57cbc
 
 **Rule**: If two skills share a domain type, the **user's most recent invocation wins**. If ambiguous, ask.
 
