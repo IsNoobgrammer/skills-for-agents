@@ -31,8 +31,8 @@ features:
     details: Battle-tested skills for ML research, documentation, UI/UX, incident response, and more.
   
   - icon: 🎨
-    title: 12 Skills Included
-    details: Blogger, Caveman, Compress, Documenter, Harden, Memory, ML Engine, Painter, Postmortem, Refactor, Researcher, Skill Creator.
+    title: 13 Skills Included
+    details: Blogger, Caveman, Compress, Documenter, Harden, Learn, Memory, ML Engine, Painter, Postmortem, Refactor, Researcher, Skill Creator.
   
   - icon: 🚀
     title: Framework-Agnostic
@@ -82,6 +82,7 @@ Result: skills that compose without breaking each other.
 | [Postmortem](/skills/postmortem) | Process | Blameless incident documentation. 5 Whys, action items. |
 | [Refactor](/skills/refactor) | Process | Restructure messy codebases into clean, modular architecture. |
 | [Researcher](/skills/researcher) | Content | Deep web research. Diverse sources, cross-referencing, synthesis. |
+| [Learn](/skills/learn) | Content | Structured study plans, topic guides, exam prediction, and active recall. |
 | [Skill Creator](/skills/skill-creator) | Process | Meta-skill for creating, auditing, and improving other skills. |
 
 ## Get Started

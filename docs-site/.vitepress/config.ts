@@ -62,7 +62,8 @@ export default defineConfig({
           text: 'Content',
           items: [
             { text: 'Documenter', link: '/skills/documenter' },
-            { text: 'Researcher', link: '/skills/researcher' }
+            { text: 'Researcher', link: '/skills/researcher' },
+            { text: 'Learn', link: '/skills/learn' }
           ]
         }
       ],

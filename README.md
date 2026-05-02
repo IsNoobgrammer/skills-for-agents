@@ -104,6 +104,7 @@ Each skill is a self-contained folder with a `SKILL.md` file. Point your agent t
 | Skill | Description | Triggers |
 |-------|-------------|----------|
 | **[Documenter](documenter/)** | Comprehensive documentation. Examples, guides, API references. | "document this", "write docs", "create documentation" |
+| **[Learn](learn/)** | Structured study plans, topic guides, exam prediction, and active recall. | `/learn`, "teach me X", "how do I learn Y" |
 | **[Researcher](researcher/)** | Deep web research. Diverse sources, cross-referencing, synthesis. | "research X", "find info about Y", "what's the latest on Z" |
 
 ---
@@ -122,8 +123,8 @@ Skills Interoperability Protocol ensures every skill knows how to compose with o
 ### ⚡ Production-Ready
 Battle-tested skills for ML research, documentation, UI/UX, incident response, and more.
 
-### 🎨 12 Skills Included
-Blogger, Caveman, Compress, Documenter, Harden, Memory, ML Engine, Painter, Postmortem, Refactor, Researcher, Skill Creator.
+### 🎨 13 Skills Included
+Blogger, Caveman, Compress, Documenter, Harden, Learn, Memory, ML Engine, Painter, Postmortem, Refactor, Researcher, Skill Creator.
 
 ### 🚀 Framework-Agnostic
 Drop into any agent framework. Works with any LLM that supports system prompts.

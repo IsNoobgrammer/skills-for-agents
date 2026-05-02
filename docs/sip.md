@@ -38,8 +38,8 @@ Every skill declares exactly one domain in its frontmatter. Domains never overla
 | **`voice`** | Tone, vocabulary, personality, emotional register | `blogger` |
 | **`density`** | Token count, verbosity, compression level | `caveman`, `compress` |
 | **`craft`** | Visual design, UI/UX, code quality of frontend output | `painter`, `harden` |
-| **`process`** | Workflow steps, templates, structured output format | `postmortem`, `skill-creator`, `refactor` |
-| **`content`** | The actual substance being written about | *(user's request)* |
+| **`process`** | Workflow steps, templates, structured output format | `postmortem`, `skill-creator`, `refactor`, `memory`, `ml-engine` |
+| **`content`** | The actual substance being written about | `documenter`, `researcher`, `learn` |
 
 **Rule**: If two skills share a domain, the user's most recent invocation wins. If ambiguous, ask.
 
@@ -152,5 +152,10 @@ When skills conflict, resolve with this hierarchy:
 | Refactor code | `/refactor` | process | `harden` (harden runs after refactor) |
 | Harden for scale | `/harden` | craft | `refactor` (refactor runs before harden) |
 | Create a skill | `/create-skill` | process | any voice or density skill |
+| Document code/APIs | `document this` | content | `researcher`, `blogger` |
+| Web research | `research X` | content | `documenter`, `ml-engine` |
+| Study & Learning | `/learn` | content | `blogger`, `caveman` |
+| Persist context | Startup (mandatory) | process | any skill |
+| ML Research | `/ml` | process | `researcher` |
 
 > See the full technical specification in [`PROTOCOL.md`](../PROTOCOL.md) for the complete contract, anti-patterns, and conflict resolution matrix.
