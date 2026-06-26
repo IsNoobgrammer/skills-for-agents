@@ -31,14 +31,14 @@ function getHermesSkillsDir() {
 
 const TOOLS = {
   antigravity: {
-    name: "Antigravity (OpenClaude)",
-    global: path.join(HOME, ".openclaude", "skills"),
+    name: "Antigravity (Gemini)",
+    global: path.join(HOME, ".gemini", "config", "skills"),
     project: null,
     format: "folder",
     detect() {
       return (
-        fs.existsSync(path.join(HOME, ".openclaude")) ||
-        fs.existsSync(path.join(HOME, ".openclaude", "skills"))
+        fs.existsSync(path.join(HOME, ".gemini")) ||
+        fs.existsSync(path.join(HOME, ".gemini", "config", "skills"))
       );
     },
   },
